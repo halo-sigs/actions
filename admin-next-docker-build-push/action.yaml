@@ -19,7 +19,7 @@ runs:
   using: "composite"
   steps:
     - name: Environment Set Up
-      uses: halo-sigs/actions/admin-env-setup
+      uses: halo-sigs/actions/admin-env-setup@main
     - name: Build Package
       shell: bash
       run: |
