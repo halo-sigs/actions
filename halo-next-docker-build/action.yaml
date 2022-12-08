@@ -115,7 +115,7 @@ runs:
       with:
         context: .
         file: ./Dockerfile
-        platforms: linux/amd64,linux/arm/v7,linux/arm64
+        platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ (inputs.ghcr-token != '' || inputs.dockerhub-token != '') && inputs.push == 'true' }}
