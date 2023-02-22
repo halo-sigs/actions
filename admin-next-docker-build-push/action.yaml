@@ -40,9 +40,9 @@ runs:
       run: |
         if [ -z ${{ inputs.dockerhub-user }} ]
         then
-          echo '::set-output name=docker_image::'
+          echo "docker_image=" >> $GITHUB_OUTPUT
         else
-          echo '::set-output name=docker_image::halohub/${{ inputs.image-name }}'
+          echo "docker_image=halohub/${{ inputs.image-name }}" >> $GITHUB_OUTPUT
         fi
     - name: Docker meta for Halo admin
       id: meta
