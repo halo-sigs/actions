@@ -37,7 +37,7 @@ runs:
         ref: ${{ inputs.console-ref }}
         path: console
     - name: Console Environment Set Up
-      uses: halo-sigs/actions/admin-env-setup@main
+      uses: halo-sigs/actions/admin-env-setup@release-2.1
     - name: Build Console
       shell: bash
       working-directory: console
