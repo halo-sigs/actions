@@ -30,32 +30,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout Console
-      uses: actions/checkout@v3
-      with:
-        repository: halo-dev/console
-        ref: ${{ inputs.console-ref }}
-        path: console
-    - name: Console Environment Set Up
-      uses: halo-sigs/actions/admin-env-setup@main
-    - name: Build Console
-      shell: bash
-      working-directory: console
-      run: |
-        pnpm install
-        pnpm build:packages
-        pnpm build
-    - name: Copy Dist into Halo
-      shell: bash
-      run: |
-        mkdir -p src/main/resources/console
-        cp -r console/dist/* src/main/resources/console
-    - name: Setup JDK 17
+    - name: Setup JDK
       uses: actions/setup-java@v3
       with:
         distribution: "temurin"
         cache: "gradle"
         java-version: 17
+    - name: Setup console environment
+      uses: halo-sigs/actions/admin-env-setup@main
+    - name: Build Console
+      shell: bash
+      run: |
+        make -C console build
     - name: Reset version of Halo
       if: github.event_name == 'release'
       shell: bash
