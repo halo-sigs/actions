@@ -41,7 +41,7 @@ runs:
     - name: Build Console
       shell: bash
       run: |
-        make cbuild
+        make -C console build
     - name: Reset version of Halo
       if: github.event_name == 'release'
       shell: bash
