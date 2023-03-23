@@ -54,7 +54,7 @@ runs:
       shell: bash
       run: |
         ./gradlew downloadPluginPresets
-        ./gradlew clean build -x check -x jar
+        ./gradlew clean build -x check
     - name: DockerHub image
       id: dockerhub-image
       run: |
