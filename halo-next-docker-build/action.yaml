@@ -37,7 +37,7 @@ runs:
         cache: "gradle"
         java-version: 17
     - name: Setup console environment
-      uses: halo-sigs/actions/admin-env-setup@main
+      uses: halo-sigs/actions/admin-env-setup@release-2.10
     - name: Build Console
       shell: bash
       run: |
