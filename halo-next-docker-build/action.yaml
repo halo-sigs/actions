@@ -18,6 +18,10 @@ inputs:
     description: Should push the docker image or not.
     required: false
     default: "false"
+  load:
+    description: Should load the image into docker or not.
+    required: false
+    default: "false"
   image-name:
     description: The basic name of docker.
     required: false
@@ -107,3 +111,4 @@ runs:
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ (inputs.ghcr-token != '' || inputs.dockerhub-token != '') && inputs.push == 'true' }}
+        load: ${{ inputs.load == 'true' }}
