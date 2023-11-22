@@ -19,7 +19,7 @@ inputs:
     required: false
     default: "false"
   load:
-    description: Should load the image image into docker or not.
+    description: Should load the image into docker or not.
     required: false
     default: "false"
   image-name:
