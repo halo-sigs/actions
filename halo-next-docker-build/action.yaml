@@ -22,6 +22,10 @@ inputs:
     description: Should load the image into docker or not.
     required: false
     default: "false"
+  platforms:
+    description: Target platforms for building image
+    required: false
+    default: "linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x"
   image-name:
     description: The basic name of docker.
     required: false
@@ -107,7 +111,7 @@ runs:
       with:
         context: .
         file: ./Dockerfile
-        platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+        platforms: ${{ inputs.platforms }}
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ (inputs.ghcr-token != '' || inputs.dockerhub-token != '') && inputs.push == 'true' }}
