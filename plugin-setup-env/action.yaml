@@ -1,0 +1,44 @@
+name: Setup Environment
+description: Setup environment to check and build Halo plugin, including console and core projects.
+
+inputs:
+  node-version:
+    description: Node.js version.
+    required: false
+    default: "18"
+
+  pnpm-version:
+    description: pnpm version.
+    required: false
+    default: "8"
+
+  java-version:
+    description: Java version.
+    required: false
+    default: "17"
+  cache-dept-path:
+    description: Pnpm cache dependency path.
+    required: false
+    defualt: ""
+
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v3
+      name: Setup pnpm
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'pnpm'
+        cache-dependency-path: ${{ inputs.cache-dept-path }}
+
+    - name: Setup JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: "temurin"
+        cache: "gradle"
+        java-version: ${{ inputs.java-version }}
