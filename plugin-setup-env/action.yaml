@@ -16,21 +16,29 @@ inputs:
     description: Java version.
     required: false
     default: "17"
+
   cache-dept-path:
     description: Pnpm cache dependency path.
     required: false
     defualt: ""
+  
+  skip-node-setup:
+    description: Indicates if the node setup should be skipped.
+    required: false
+    default: "false"
 
 runs:
   using: "composite"
   steps:
     - uses: pnpm/action-setup@v3
+      if: ${{ inputs.skip-node-setup != 'true' }}
       name: Setup pnpm
       with:
         version: ${{ inputs.pnpm-version }}
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
+      if: ${{ inputs.skip-node-setup != 'true' }}
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
